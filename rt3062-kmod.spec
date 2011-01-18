@@ -9,7 +9,7 @@
 
 Name:		rt3062-kmod
 Version:	2.4.1.1
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Kernel module for wireless devices with Ralink's RT3062 PCI/mPCI/CB/PCIe (RT3060/RT3062/RT3562/RT3592) chipsets
 
 Group:		System Environment/Kernel
@@ -22,6 +22,7 @@ Patch0:		rt3062-CHIPSET_DAT-fix.patch
 Patch1:		rt3062-no2.4-in-kernelversion.patch
 Patch2:		rt3062-Makefile.x-fixes.patch
 Patch3:		rt3062-NetworkManager-support.patch
+Patch4:		rt3062-fix-2860-conflicts.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	%{_bindir}/kmodtool
@@ -49,6 +50,7 @@ pushd %{src_folder_name}
 %patch1 -p1 -b .no24
 %patch2 -p1 -b .rpmbuild
 %patch3 -p1 -b .NetworkManager
+%patch4 -p1 -b .conflicts
 popd
 
 # Fix permissions
@@ -78,6 +80,9 @@ chmod 0755 $RPM_BUILD_ROOT/%{kmodinstdir_prefix}/*/%{kmodinstdir_postfix}/*
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Jan 18 2011 Alexei Panov <elemc [AT] atisserv [DOT] ru> - 2.4.1.1-2
+- add patch to fix conflicts with rt2860 in source code
+
 * Sun Jan 16 2011 Alexei Panov <elemc [AT] atisserv [DOT] ru> - 2.4.1.1-1
 - changed for RT3062 sources from rt2870-kmod package
 

@@ -1,0 +1,40 @@
+diff -uNdr DPO_RT3562_3592_3062_LinuxSTA_V2.4.1.1_20101217.orig/include/os/rt_linux.h DPO_RT3562_3592_3062_LinuxSTA_V2.4.1.1_20101217/include/os/rt_linux.h
+--- DPO_RT3562_3592_3062_LinuxSTA_V2.4.1.1_20101217.orig/include/os/rt_linux.h	2010-12-17 14:44:47.000000000 +0300
++++ DPO_RT3562_3592_3062_LinuxSTA_V2.4.1.1_20101217/include/os/rt_linux.h	2011-01-18 16:18:43.004131756 +0300
+@@ -111,10 +111,10 @@
+ 
+ #ifdef CONFIG_STA_SUPPORT
+ #ifdef RTMP_MAC_PCI
+-#define STA_PROFILE_PATH			"/etc/Wireless/RT2860STA/RT2860STA.dat"
++#define STA_PROFILE_PATH			"/etc/Wireless/RT3062STA/RT3062STA.dat"
+ #define STA_DRIVER_VERSION			"2.4.1.1"
+ #ifdef MULTIPLE_CARD_SUPPORT
+-#define CARD_INFO_PATH			"/etc/Wireless/RT2860STA/RT2860STACard.dat"
++#define CARD_INFO_PATH			"/etc/Wireless/RT3062STA/RT3062STACard.dat"
+ #endif // MULTIPLE_CARD_SUPPORT //
+ #endif // RTMP_MAC_PCI //
+ 
+diff -uNdr DPO_RT3562_3592_3062_LinuxSTA_V2.4.1.1_20101217.orig/os/linux/pci_main_dev.c DPO_RT3562_3592_3062_LinuxSTA_V2.4.1.1_20101217/os/linux/pci_main_dev.c
+--- DPO_RT3562_3592_3062_LinuxSTA_V2.4.1.1_20101217.orig/os/linux/pci_main_dev.c	2010-12-17 14:44:47.000000000 +0300
++++ DPO_RT3562_3592_3062_LinuxSTA_V2.4.1.1_20101217/os/linux/pci_main_dev.c	2011-01-18 16:20:02.009695411 +0300
+@@ -97,7 +97,7 @@
+ //
+ static struct pci_driver rt2860_driver =
+ {
+-    name:       "rt2860",
++    name:       "rt3062",
+     id_table:   rt2860_pci_tbl,
+     probe:      rt2860_probe,
+ #if LINUX_VERSION_CODE >= 0x20412
+@@ -317,9 +317,9 @@
+ 	}
+ 
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,5,0)
+-	print_name = pci_dev ? pci_name(pci_dev) : "rt2860";
++	print_name = pci_dev ? pci_name(pci_dev) : "rt3062";
+ #else
+-	print_name = pci_dev ? pci_dev->slot_name : "rt2860";
++	print_name = pci_dev ? pci_dev->slot_name : "rt3062";
+ #endif // LINUX_VERSION_CODE //
+ 
+ 	if ((rv = pci_request_regions(pci_dev, print_name)) != 0)
